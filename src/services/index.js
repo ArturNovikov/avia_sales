@@ -1,3 +1,3 @@
-import AviasalesServices from './AviasalesServices';
+import ApiServices from './apiServices';
 
-export default AviasalesServices;
+export default ApiServices;

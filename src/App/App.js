@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 
-import ApiService from '../services';
+import ApiService from '../services'
 import Loading from '../Loading';
 
 const App = () => {

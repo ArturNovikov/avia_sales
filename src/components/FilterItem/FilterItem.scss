@@ -1,0 +1,8 @@
+@import '../../styles/global.scss';
+
+.filter__field {
+    @include full-margin-padding-reset;
+    .filter__name {
+        @include typography-for-simple;
+    }
+}

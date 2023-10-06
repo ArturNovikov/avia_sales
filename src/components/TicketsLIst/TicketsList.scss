@@ -1,0 +1,5 @@
+@import '../../styles/global.scss';
+
+.tickets-list {
+    @include full-margin-padding-reset;
+}

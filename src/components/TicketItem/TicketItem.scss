@@ -1,0 +1,48 @@
+@import '../../styles/global.scss';
+
+.ticket {
+    width: 502px;
+    height: 184px;
+    flex-shrink: 0;
+    background: $white-primary-color;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.10);
+    border: 1px solid $gray-border-color;
+    padding: 16px;
+    margin-bottom: 20px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto auto;
+
+    .ticket__cost {
+        width: 147px;
+
+        color: $blue-primary-color;
+        font-family: 'Open Sans';
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 24px;
+
+        font-size: 16px;
+        margin-right: 8px;
+        grid-column: 1;
+        
+    }
+
+    img {
+        width: 40px;
+        height: 40px;
+        margin-right: 16px;
+        grid-column: 3;
+    }
+
+    .ticket__description {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: auto auto;
+        grid-column: 1 / span 3;
+        li>.ticket__headers {
+            @include typography-for-tickets-headers;
+        }
+    }
+}

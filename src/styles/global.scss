@@ -1,0 +1,79 @@
+#root {
+    font-family: 'Open Sans';
+    font-weight: 400;
+  }
+
+ul,
+li {
+    list-style: none;
+}
+
+
+$background-color: #F3F7FA;
+$blue-primary-color: #2196F3;
+$black-primary-color: #4A4A4A;
+$gray-inactive-color: #A0B0B9;
+$white-primary-color: #FFFFFF;
+$gray-border-color: #DFE5EC;
+
+@mixin flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin margin-reset {
+    margin: 0;
+}
+
+@mixin padding-reset{
+    padding: 0;
+}
+
+@mixin full-margin-padding-reset{
+    @include margin-reset;
+    @include padding-reset;
+}
+
+@mixin typography-for-upper-headers {
+    color: $black-primary-color;
+    font-family: 'Open Sans';
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 12px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+@mixin typography-for-simple {
+    color: $black-primary-color;
+    font-family: 'Open Sans';
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+}
+
+@mixin typography-for-active-tab {
+    color: $white-primary-color;
+    text-align: center;
+    font-family: 'Open Sans';
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 20px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+@mixin typography-for-tickets-headers {
+    color: $gray-inactive-color;
+    font-family: 'Open Sans';
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 18px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}

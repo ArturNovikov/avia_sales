@@ -1,6 +1,6 @@
 import React from 'react';
 
-import LogoPlane from '../Assets/LogoLogoPlane.svg';
+import LogoPlane from '../../assets/LogoLogoPlane.svg';
 
 import './Loading.scss';
 

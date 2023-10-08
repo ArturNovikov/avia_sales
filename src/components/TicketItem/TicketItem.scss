@@ -1,5 +1,6 @@
 @import '../../styles/global.scss';
 
+
 .ticket {
     width: 502px;
     height: 184px;
@@ -7,32 +8,38 @@
     background: $white-primary-color;
     box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.10);
     border: 1px solid $gray-border-color;
+    border-radius: 6px;
     padding: 16px;
     margin-bottom: 20px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: auto auto;
+    @include padding-reset;
+
 
     .ticket__cost {
         width: 147px;
-
         color: $blue-primary-color;
-        font-family: 'Open Sans';
+        font-family: 'Open Sans', sans-serif;
         font-size: 24px;
         font-style: normal;
         font-weight: 600;
         line-height: 24px;
 
-        font-size: 16px;
         margin-right: 8px;
         grid-column: 1;
+
+        padding-left: 20px;
+        padding-top: 26px;
         
     }
 
     img {
-        width: 40px;
-        height: 40px;
-        margin-right: 16px;
+        width: 110px;
+        height: 36px;
+        margin-right: 20px;
+        margin-left: auto;
+        margin-top: 20px;
         grid-column: 3;
     }
 
@@ -41,8 +48,14 @@
         grid-template-columns: 1fr 1fr 1fr;
         grid-template-rows: auto auto;
         grid-column: 1 / span 3;
+        grid-gap: 10px 20px;
+        @include full-margin-padding-reset;
+        padding-left: 20px;
         li>.ticket__headers {
             @include typography-for-tickets-headers;
+        }
+        li>.ticket__data {
+            @include typography-for-tickets-data;
         }
     }
 }

@@ -6,7 +6,8 @@
     height: 50px;
     display: flex;
     background: $white-primary-color;
-    border-radius: 5px;
+    border: 1px solid $gray-border-color;
+    border-radius: 6px;
     margin-bottom: 20px;
     .tabs__item.checked {
         background-color: $blue-primary-color;
@@ -18,6 +19,7 @@
         width: 168px;
         height: 50px;
         flex-shrink: 0;
+        border: 1px solid $gray-border-color;
         @include flex-center;
         .tabs__field {
             @include typography-for-upper-headers;

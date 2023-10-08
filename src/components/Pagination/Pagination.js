@@ -1,5 +1,7 @@
 import React from 'react';
 
+import './Pagination.scss';
+
 const Pagination = () => {
   return (
     <button className="pagination">

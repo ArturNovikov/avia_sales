@@ -1,5 +1,7 @@
+@import '../fonts/fonts.scss';
+
 #root {
-    font-family: 'Open Sans';
+    font-family: 'Open Sans', sans-serif;
     font-weight: 400;
   }
 
@@ -37,7 +39,8 @@ $gray-border-color: #DFE5EC;
 
 @mixin typography-for-upper-headers {
     color: $black-primary-color;
-    font-family: 'Open Sans';
+    font-family: 'Open Sans', sans-serif;
+    ;
     font-size: 12px;
     font-style: normal;
     font-weight: 600;
@@ -48,7 +51,7 @@ $gray-border-color: #DFE5EC;
 
 @mixin typography-for-simple {
     color: $black-primary-color;
-    font-family: 'Open Sans';
+    font-family: 'Open Sans', sans-serif;
     font-size: 13px;
     font-style: normal;
     font-weight: 400;
@@ -58,7 +61,7 @@ $gray-border-color: #DFE5EC;
 @mixin typography-for-active-tab {
     color: $white-primary-color;
     text-align: center;
-    font-family: 'Open Sans';
+    font-family: 'Open Sans', sans-serif;
     font-size: 12px;
     font-style: normal;
     font-weight: 600;
@@ -69,11 +72,32 @@ $gray-border-color: #DFE5EC;
 
 @mixin typography-for-tickets-headers {
     color: $gray-inactive-color;
-    font-family: 'Open Sans';
+    font-family: 'Open Sans', sans-serif;
     font-size: 12px;
     font-style: normal;
     font-weight: 600;
     line-height: 18px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+@mixin typography-for-tickets-data {
+    color: $black-primary-color;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 21px;
+}
+
+@mixin typography-for-pagination {
+    color: $white-primary-color;
+    text-align: center;
+    font-family: Open Sans;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 20px;
     letter-spacing: 0.5px;
     text-transform: uppercase;
 }

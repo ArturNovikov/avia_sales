@@ -11,7 +11,7 @@
     flex-direction: column;
     padding-left: 20px;
     padding-top: 20px;
-    row-gap: 20px;
+    row-gap: 10px;
     .filter__title {
         @include typography-for-upper-headers;
     }
@@ -20,11 +20,17 @@
         padding: 0;
         display: flex;
         flex-direction: column;
-        row-gap: 20px;
         .filter__item{
-            width: 142px;
-            height: 20px;
+            width: 232px;
+            height: 40px;
             flex-shrink: 0;
+            @include flex-center;
+            width: 100%;
+            justify-content: flex-start;
+        &:hover {
+            background-color: #F1FCFF;
+            box-shadow: -20px 0 0 0 #F1FCFF
+        }
         }
     }
 }

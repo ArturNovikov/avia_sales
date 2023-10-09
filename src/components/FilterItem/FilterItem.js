@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import classNames from 'classnames';
 import './FilterItem.scss';
 
 const FilterItem = ({ label, name }) => {
-  const [isChecked, setIsChecked] = React.useState(false);
+  const [isChecked, setIsChecked] = useState(false);
 
   const handleInputChange = () => {
     setIsChecked(!isChecked);

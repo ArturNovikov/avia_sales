@@ -1,12 +1,18 @@
 import React from 'react';
-
+import classNames from 'classnames';
 import './FilterItem.scss';
 
-const FilterItem = () => {
+const FilterItem = ({ label, name }) => {
+  const [isChecked, setIsChecked] = React.useState(false);
+
+  const handleInputChange = () => {
+    setIsChecked(!isChecked);
+  };
+
   return (
-    <label className="filter__field">
-      <input className="filter_input" type="checkbox" name="All" />
-      <span className="filter__name">Все</span>
+    <label className={classNames('filter__field', { checked: isChecked })}>
+      <input className="filter__input" type="checkbox" name={name} onChange={handleInputChange} />
+      <span className="filter__name">{label}</span>
     </label>
   );
 };

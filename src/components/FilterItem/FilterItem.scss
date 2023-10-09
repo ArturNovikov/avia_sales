@@ -1,8 +1,29 @@
 @import '../../styles/global.scss';
 
 .filter__field {
+    position: relative;
     @include full-margin-padding-reset;
+    
     .filter__name {
         @include typography-for-simple;
+    }
+    
+    .filter__input {
+        display: none;
+    }
+
+    &::before {
+        content: "";
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        border-radius: 2px;
+        vertical-align: middle;
+        margin-right: 8px;
+        background-image: url('../../assets/Checkbox-unchecked.svg');
+    }
+
+    &.checked::before {
+        background-image: url('../../assets/Checkbox-checked.svg');
     }
 }

@@ -1,6 +1,6 @@
 /* eslint-disable no-case-declarations */
 /* eslint-disable indent */
-import { TOGGLE_ALL, UNSET_ALL, TOGGLE_FILTER } from '../actions/types';
+import { TOGGLE_ALL, TOGGLE_FILTER } from '../actions/types';
 
 const initialState = {
   all: false,
@@ -21,23 +21,21 @@ const filtersReducer = (state = initialState, action) => {
         twoStops: allChecked,
         threeStops: allChecked,
       };
-    case UNSET_ALL:
-      return {
-        ...state,
-        all: false,
-        noStops: false,
-        oneStop: false,
-        twoStops: false,
-        threeStops: false,
-      };
+
     case TOGGLE_FILTER:
       const updatedState = {
         ...state,
         [action.payload]: !state[action.payload],
       };
+
       const filtersExceptAll = ['noStops', 'oneStop', 'twoStops', 'threeStops'];
-      updatedState.all = filtersExceptAll.every((filter) => updatedState[filter]);
+      if (filtersExceptAll.every((filter) => updatedState[filter])) {
+        updatedState.all = true;
+      } else {
+        updatedState.all = false;
+      }
       return updatedState;
+
     default:
       return state;
   }

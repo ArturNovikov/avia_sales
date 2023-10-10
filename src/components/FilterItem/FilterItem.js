@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import classNames from 'classnames';
 
 import './FilterItem.scss';
-import { toggleFilter, toggleAll, unsetAll } from '../../store/actions/filtersActions';
+import { toggleFilter, toggleAll } from '../../store/actions/filtersActions';
 
 const FilterItem = ({ label, name }) => {
   const dispatch = useDispatch();
@@ -11,11 +11,7 @@ const FilterItem = ({ label, name }) => {
 
   const handleInputChange = () => {
     if (name === 'all') {
-      if (isChecked) {
-        dispatch(unsetAll());
-      } else {
-        dispatch(toggleAll());
-      }
+      dispatch(toggleAll());
     } else {
       dispatch(toggleFilter(name));
     }

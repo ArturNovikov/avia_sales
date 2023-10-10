@@ -26,7 +26,6 @@ const App = () => {
         return [searchId, dataTickets];
       })
       .then(([searchId, dataTickets]) => {
-        console.log('Received data tickets: ', dataTickets);
         return apiService.fetchAllTickets(searchId, dataTickets.tickets);
       })
       .then(() => {

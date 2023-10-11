@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { fetchTickets } from '../../store/actions/ticketsActions';
 import Loading from '../Loading';
@@ -13,11 +13,10 @@ import './App.scss';
 
 const App = () => {
   const dispatch = useDispatch();
-  const [loading, setLoading] = useState(true);
+  const loading = useSelector((state) => state.tickets.loading);
 
   useEffect(() => {
     dispatch(fetchTickets());
-    setLoading(false);
   }, [dispatch]);
 
   return (

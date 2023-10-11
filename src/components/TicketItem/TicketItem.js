@@ -1,44 +1,56 @@
 import React from 'react';
-
-import S7Logo from '../../assets/S7Logo.svg';
 import './TicketItem.scss';
 
-const TicketItem = () => {
+function formatTime(date) {
+  const hours = date.getHours().toString().padStart(2, '0');
+  const minutes = date.getMinutes().toString().padStart(2, '0');
+  return `${hours}:${minutes}`;
+}
+
+const TicketSegment = ({ segment }) => {
+  const startDate = new Date(segment.date);
+  const endDate = new Date(startDate.getTime() + segment.duration * 60000);
+
+  const stopsRender = segment.stops.length === 0 ? 'без пересадок' : `${segment.stops.length} пересадка(и)`;
+
+  return (
+    <>
+      <li>
+        <span className="ticket__headers">
+          {segment.origin} – {segment.destination}
+        </span>
+        <br />
+        <span className="ticket__data">
+          {formatTime(startDate)} – {formatTime(endDate)}
+        </span>
+      </li>
+      <li>
+        <span className="ticket__headers">В пути</span>
+        <br />
+        <span className="ticket__data">
+          {Math.floor(segment.duration / 60)}ч {segment.duration % 60}м
+        </span>
+      </li>
+      <li>
+        <span className="ticket__headers">{stopsRender}</span>
+        <br />
+        {segment.stops.length > 0 && <span className="ticket__data">{segment.stops.join(', ')}</span>}
+      </li>
+    </>
+  );
+};
+
+const TicketItem = ({ ticket }) => {
+  const airlineLogoUrl = `//pics.avs.io/99/36/${ticket.carrier}.png`;
+
   return (
     <div className="ticket">
-      <span className="ticket__cost">13370 P</span>
-      <img src={S7Logo} alt="Airline Logo" />
+      <span className="ticket__cost">{ticket.price} P</span>
+      <img src={airlineLogoUrl} alt="Airline Logo" />
       <ul className="ticket__description">
-        <li>
-          <span className="ticket__headers">MOW – HKT</span>
-          <br />
-          <span className="ticket__data">10:45 – 08:00</span>
-        </li>
-        <li>
-          <span className="ticket__headers">В пути</span>
-          <br />
-          <span className="ticket__data">21ч 15м</span>
-        </li>
-        <li>
-          <span className="ticket__headers">2 пересадки</span>
-          <br />
-          <span className="ticket__data">MOW – HKT</span>
-        </li>
-        <li>
-          <span className="ticket__headers">MOW – HKT</span>
-          <br />
-          <span className="ticket__data">11:20 – 00:50</span>
-        </li>
-        <li>
-          <span className="ticket__headers">В пути</span>
-          <br />
-          <span className="ticket__data">13ч 30м</span>
-        </li>
-        <li>
-          <span className="ticket__headers">1 пересадка</span>
-          <br />
-          <span className="ticket__data">HKG</span>
-        </li>
+        {ticket.segments.map((segment, index) => (
+          <TicketSegment key={index} segment={segment} />
+        ))}
       </ul>
     </div>
   );

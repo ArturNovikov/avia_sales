@@ -25,7 +25,7 @@ const App = () => {
         <img src={Logo} className="header__logo" alt="Logo" />
       </header>
       <main className="main">
-        <FilterList />
+        <FilterList /* tickets={tickets} */ />
         <div className="main__tickets">
           <TabsList />
           {loading ? <Loading /> : <TicketsList />}

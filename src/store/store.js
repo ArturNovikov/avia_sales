@@ -1,13 +1,10 @@
-import { createStore, combineReducers } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
+import thunk from 'redux-thunk';
 
-import filtersReducer from './reducers/filtersReducer';
-import sortReducer from './reducers/sortReducer';
+import rootReducer from './reducers/index';
 
-const rootReducer = combineReducers({
-  filters: filtersReducer,
-  sort: sortReducer,
-});
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION__COMPOSE || compose;
 
-const store = createStore(rootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)));
 
 export default store;

@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 
-import ApiService from '../../services';
+import { fetchTickets } from '../../store/actions/ticketsActions';
 import Loading from '../Loading';
-import TicketsList from '../TicketsLIst';
+import TicketsList from '../TicketsList';
 import FilterList from '../FilterList';
 import TabsList from '../TabsList';
 import Pagination from '../Pagination';
@@ -11,31 +12,13 @@ import Logo from '../../assets/LogoLogoPlane.svg';
 import './App.scss';
 
 const App = () => {
+  const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
-  useEffect(() => {
-    const apiService = new ApiService();
-    let searchId;
 
-    apiService
-      .initSearch()
-      .then((receivedSearchId) => {
-        searchId = receivedSearchId;
-        return apiService.fetchBatchTickets(searchId);
-      })
-      .then((dataTickets) => {
-        return [searchId, dataTickets];
-      })
-      .then(([searchId, dataTickets]) => {
-        return apiService.fetchAllTickets(searchId, dataTickets.tickets);
-      })
-      .then(() => {
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error('Error during fetching tickets: ', error);
-        setLoading(false);
-      });
-  }, []);
+  useEffect(() => {
+    dispatch(fetchTickets());
+    setLoading(false);
+  }, [dispatch]);
 
   return (
     <div className="wrapper__container">

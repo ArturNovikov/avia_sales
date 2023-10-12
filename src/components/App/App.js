@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Progress, Space } from 'antd';
 
 import { fetchTickets } from '../../store/actions/ticketsActions';
 import Loading from '../Loading';
@@ -14,6 +15,9 @@ import './App.scss';
 const App = () => {
   const dispatch = useDispatch();
   const loading = useSelector((state) => state.tickets.loading);
+  const totalFetchedTickets = useSelector((state) => state.tickets.allTickets.length);
+  const expectedTotalTickets = useSelector((state) => state.tickets.totalTickets);
+  const percentLoaded = (totalFetchedTickets / expectedTotalTickets) * 100;
 
   useEffect(() => {
     dispatch(fetchTickets());
@@ -25,10 +29,13 @@ const App = () => {
         <img src={Logo} className="header__logo" alt="Logo" />
       </header>
       <main className="main">
-        <FilterList /* tickets={tickets} */ />
+        <FilterList />
         <div className="main__tickets">
           <TabsList />
-          {loading ? <Loading /> : <TicketsList />}
+          <Space direction="vertical">
+            <Progress percent={percentLoaded} size={[500, 20]} showInfo={false} className="shiny-progress" />
+          </Space>
+          {loading && totalFetchedTickets === 0 ? <Loading /> : <TicketsList />}
           <Pagination />
         </div>
       </main>

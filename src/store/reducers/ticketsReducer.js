@@ -6,6 +6,7 @@ import {
   FETCH_TICKETS_REQUEST,
   FETCH_TICKETS_SUCCESS,
   FETCH_TICKETS_ERROR,
+  LOAD_MORE_TICKETS,
 } from '../actions/types';
 
 const initialState = {
@@ -14,6 +15,10 @@ const initialState = {
   loading: false,
   error: null,
   stop: false,
+  allTickets: [],
+  ticketsToShow: 5,
+  totalTickets: 10000,
+  loadedTickets: 0,
 };
 
 const ticketsReducer = (state = initialState, action) => {
@@ -46,7 +51,8 @@ const ticketsReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        tickets: [...state.tickets, ...action.payload.tickets],
+        allTickets: [...state.allTickets, ...action.payload.tickets],
+        loadedTickets: state.loadedTickets + action.payload.tickets.length,
         stop: action.payload.stop,
       };
     case FETCH_TICKETS_ERROR:
@@ -54,6 +60,11 @@ const ticketsReducer = (state = initialState, action) => {
         ...state,
         loading: false,
         error: action.payload,
+      };
+    case LOAD_MORE_TICKETS:
+      return {
+        ...state,
+        ticketsToShow: state.ticketsToShow + 5,
       };
     default:
       return state;

@@ -7,6 +7,7 @@ import {
   FETCH_TICKETS_REQUEST,
   FETCH_TICKETS_SUCCESS,
   FETCH_TICKETS_ERROR,
+  LOAD_MORE_TICKETS,
 } from './types';
 
 export const fetchSearchIdRequest = () => ({
@@ -27,10 +28,10 @@ export const fetchTicketsRequest = () => ({
   type: FETCH_TICKETS_REQUEST,
 });
 
-export const fetchTicketsSuccess = (allTickets) => ({
+export const fetchTicketsSuccess = (data) => ({
   type: FETCH_TICKETS_SUCCESS,
   payload: {
-    tickets: allTickets,
+    tickets: data.tickets,
     stop: true,
   },
 });
@@ -40,20 +41,27 @@ export const fetchTicketsError = (error) => ({
   payload: error,
 });
 
+export const loadMoreTickets = () => ({
+  type: LOAD_MORE_TICKETS,
+});
+
 const apiService = new ApiService();
 
 export const fetchTickets = () => async (dispatch) => {
   dispatch(fetchSearchIdRequest());
   try {
     const searchId = await apiService.initSearch();
-    console.log(`SearchId from action creator: ${searchId}`);
     dispatch(fetchSearchIdSuccess(searchId));
 
     dispatch(fetchTicketsRequest());
 
-    const allTickets = await apiService.fetchAllTickets(searchId);
-    console.log('All Tickets from action creator async:', allTickets);
-    dispatch(fetchTicketsSuccess(allTickets));
+    let stop = false;
+    while (!stop) {
+      const batch = await apiService.fetchBatchTickets(searchId);
+      stop = batch.stop;
+
+      dispatch(fetchTicketsSuccess(batch));
+    }
   } catch (error) {
     console.error('Error occurred:', error.message);
     dispatch(fetchSearchIdError(error.message));

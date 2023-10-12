@@ -1,5 +1,8 @@
 @import '../../styles/global.scss';
 
+$blue-light: lighten($blue-primary-color, 10%);
+$blue-dark: darken($blue-primary-color, 10%);
+
 * {
     box-sizing: border-box;
   }
@@ -32,4 +35,20 @@
             width: auto;
         }
     }
+
+    .shiny-progress .ant-progress-bg {
+        background: linear-gradient(270deg, $blue-light, $blue-dark, $blue-light);
+        background-size: 200% 200%;
+        animation: gradientAnimation 3s infinite;
+    }
+    
+    @keyframes gradientAnimation {
+        0% {
+            background-position: 200% 0%;
+        }
+        100% {
+            background-position: -200% 0%;
+        }
+    }   
+    
 }

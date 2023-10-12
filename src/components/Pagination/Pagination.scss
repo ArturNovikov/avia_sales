@@ -8,4 +8,13 @@
     border: 1px solid $gray-border-color;
     border-radius: 6px;
     @include typography-for-pagination;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    &:hover {
+        background-color: darken($blue-primary-color, 10%);
+    }
+    &:active {
+        background-color: darken($blue-primary-color, 15%);
+        transform: scale(0.95);
+    }
 }

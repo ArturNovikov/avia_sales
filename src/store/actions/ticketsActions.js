@@ -8,6 +8,7 @@ import {
   FETCH_TICKETS_SUCCESS,
   FETCH_TICKETS_ERROR,
   LOAD_MORE_TICKETS,
+  SORT_TICKETS,
 } from './types';
 
 export const fetchSearchIdRequest = () => ({
@@ -43,6 +44,11 @@ export const fetchTicketsError = (error) => ({
 
 export const loadMoreTickets = () => ({
   type: LOAD_MORE_TICKETS,
+});
+
+export const sortTickets = (sortedTickets) => ({
+  type: SORT_TICKETS,
+  payload: sortedTickets,
 });
 
 const apiService = new ApiService();

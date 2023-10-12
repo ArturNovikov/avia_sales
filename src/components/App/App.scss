@@ -3,6 +3,25 @@
 $blue-light: lighten($blue-primary-color, 10%);
 $blue-dark: darken($blue-primary-color, 10%);
 
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes gradientAnimation {
+    0% {
+        background-position: 200% 0%;
+    }
+    100% {
+        background-position: -200% 0%;
+    }
+}   
+
+
 * {
     box-sizing: border-box;
   }
@@ -24,6 +43,9 @@ $blue-dark: darken($blue-primary-color, 10%);
             height: 60px;
             flex-shrink: 0;
         }
+        .header__logo {
+            animation: spin 10s linear infinite;
+        }        
     }
     .main {
         display: flex;
@@ -41,14 +63,5 @@ $blue-dark: darken($blue-primary-color, 10%);
         background-size: 200% 200%;
         animation: gradientAnimation 3s infinite;
     }
-    
-    @keyframes gradientAnimation {
-        0% {
-            background-position: 200% 0%;
-        }
-        100% {
-            background-position: -200% 0%;
-        }
-    }   
     
 }

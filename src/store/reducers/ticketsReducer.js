@@ -7,6 +7,7 @@ import {
   FETCH_TICKETS_SUCCESS,
   FETCH_TICKETS_ERROR,
   LOAD_MORE_TICKETS,
+  SORT_TICKETS,
 } from '../actions/types';
 
 const initialState = {
@@ -65,6 +66,11 @@ const ticketsReducer = (state = initialState, action) => {
       return {
         ...state,
         ticketsToShow: state.ticketsToShow + 5,
+      };
+    case SORT_TICKETS:
+      return {
+        ...state,
+        tickets: action.payload,
       };
     default:
       return state;

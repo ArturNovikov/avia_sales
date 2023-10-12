@@ -3,3 +3,9 @@
 .tickets-list {
     @include full-margin-padding-reset;
 }
+.no-tickets-message {
+    @include typography-for-simple;
+    margin-top: 0px;
+    margin-bottom: 5px;
+    text-align: center;
+}

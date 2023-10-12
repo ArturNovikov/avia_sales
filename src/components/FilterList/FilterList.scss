@@ -1,5 +1,10 @@
 @import '../../styles/global.scss';
 
+.filter__item, 
+.filter__item * {
+    cursor: pointer;
+}
+
 .filter {
     width: 232px;
     height: 252px;

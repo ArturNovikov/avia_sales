@@ -3,11 +3,11 @@
 import { TOGGLE_ALL, TOGGLE_FILTER } from '../actions/types';
 
 const initialState = {
-  all: false,
-  noStops: false,
-  oneStop: false,
-  twoStops: false,
-  threeStops: false,
+  all: true,
+  noStops: true,
+  oneStop: true,
+  twoStops: true,
+  threeStops: true,
 };
 
 const filtersReducer = (state = initialState, action) => {

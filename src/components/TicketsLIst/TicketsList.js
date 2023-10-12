@@ -40,11 +40,11 @@ const TicketsList = () => {
   const currentTickets = filteredAndSortedTickets.slice(0, ticketsToShow);
 
   if (currentTickets.length === 0) {
-    return <p className="no-tickets-message">No flights matching the specified filters were found.</p>;
+    return <p className="no-tickets-message">Рейсов, подходящих под заданные фильтры, не найдено.</p>;
   }
 
   return (
-    <ul className="tickets-list">
+    <ul className="tickets__list">
       {currentTickets.map((ticket) => (
         <li key={generateTicketId(ticket)}>
           <TicketItem ticket={ticket} />

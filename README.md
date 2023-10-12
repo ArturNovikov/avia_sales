@@ -1,3 +1,3 @@
 Preview:
 
-https://avia-sales-7s92wesnw-arturnovikov.vercel.app/
+https://avia-sales-23wf2gdxt-arturnovikov.vercel.app/

@@ -40,7 +40,7 @@ const TicketsList = () => {
   const currentTickets = filteredAndSortedTickets.slice(0, ticketsToShow);
 
   if (currentTickets.length === 0) {
-    return <p className="no-tickets-message">Рейсов, подходящих под заданные фильтры, не найдено</p>;
+    return <p className="no-tickets-message">No flights matching the specified filters were found.</p>;
   }
 
   return (

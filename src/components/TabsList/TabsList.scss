@@ -4,7 +4,7 @@
     @include full-margin-padding-reset;
     width: 502px;
     height: 50px;
-    display: flex;
+    @include flex-center;
     background: $white-primary-color;
     border: 1px solid $gray-border-color;
     border-radius: 6px;
@@ -13,20 +13,21 @@
     .tabs__item {
         width: 168px;
         height: 50px;
-        flex-shrink: 0;
         @include flex-center;
         transition: background-color 0.3s, transform 0.2s;
 
         &:hover {
-            background-color: lighten($blue-primary-color, 10%);
+            background-color: darken($blue-hover-color, 5%);
             label > span {
-                @include typography-for-active-tab; 
+                transform: scale(0.95);
             }
         }
 
         &:active {
-            background-color: darken($blue-primary-color, 15%);
-            transform: scale(0.95);
+            background-color: darken($blue-hover-color, 5%);
+            label > span {
+                transform: scale(0.95);
+            }
         }
 
         &.checked {
@@ -67,4 +68,25 @@
         border-right: 1px solid $gray-border-color;
         border-left: 1px solid $gray-border-color;
     }
+
+    .tabs__item:first-child:hover, .tabs__item:first-child:active {
+        border-top-left-radius: 6px;
+        border-bottom-left-radius: 6px;
+    }
+    .tabs__item:last-child:hover, .tabs__item:last-child:active {
+        border-top-right-radius: 6px;
+        border-bottom-right-radius: 6px;
+    }
+    .tabs__item:first-child.checked {
+        border-top-left-radius: 6px;
+        border-bottom-left-radius: 6px;
+        height: 50px;
+        border: 1px solid $gray-border-color;
+    }
+    .tabs__item:last-child.checked {
+        border-top-right-radius: 6px;
+        border-bottom-right-radius: 6px;
+        height: 50px;
+        border: 1px solid $gray-border-color;
+    }           
 }

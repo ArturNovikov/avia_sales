@@ -1,8 +1,15 @@
 import React from 'react';
 
 import FilterItem from '../FilterItem';
-
 import './FilterList.scss';
+
+const FILTERS = [
+  { name: 'all', label: 'Все' },
+  { name: 'noStops', label: 'Без пересадок' },
+  { name: 'oneStop', label: '1 пересадка' },
+  { name: 'twoStops', label: '2 пересадки' },
+  { name: 'threeStops', label: '3 пересадки' },
+];
 
 const FilterList = () => {
   const handleItemClick = (e) => {
@@ -16,21 +23,11 @@ const FilterList = () => {
     <aside className="filter">
       <span className="filter__title">Количество пересадок</span>
       <ul className="filter__list">
-        <li className="filter__item" onClick={handleItemClick}>
-          <FilterItem name="all" label="Все" />
-        </li>
-        <li className="filter__item" onClick={handleItemClick}>
-          <FilterItem name="noStops" label="Без пересадок" />
-        </li>
-        <li className="filter__item" onClick={handleItemClick}>
-          <FilterItem name="oneStop" label="1 пересадка" />
-        </li>
-        <li className="filter__item" onClick={handleItemClick}>
-          <FilterItem name="twoStops" label="2 пересадки" />
-        </li>
-        <li className="filter__item" onClick={handleItemClick}>
-          <FilterItem name="threeStops" label="3 пересадки" />
-        </li>
+        {FILTERS.map((filter) => (
+          <li key={filter.name} className="filter__item" onClick={handleItemClick}>
+            <FilterItem {...filter} />
+          </li>
+        ))}
       </ul>
     </aside>
   );

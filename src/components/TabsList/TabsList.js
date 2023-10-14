@@ -1,70 +1,34 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import classNames from 'classnames';
 
 import { setActiveTab } from '../../store/actions/tabsActions';
-import { sortTickets } from '../../store/actions/ticketsActions';
 import './TabsList.scss';
 
-const TabsList = () => {
-  const dispatch = useDispatch();
+const TabItem = ({ value, children }) => {
   const activeTab = useSelector((state) => state.tabs.activeTab);
-  const allTickets = useSelector((state) => state.tickets.allTickets);
+  const dispatch = useDispatch();
 
-  const handleTabChange = (event) => {
-    const tabValue = event.target.value;
-    dispatch(setActiveTab(tabValue));
-
-    let sortedTickets = [...allTickets];
-    if (tabValue === 'cheapest') {
-      sortedTickets.sort((a, b) => a.price - b.price);
-    } else if (tabValue === 'fastest') {
-      sortedTickets.sort((a, b) => a.segments[0].duration - b.segments[0].duration);
-    } else if (tabValue === 'optimal') {
-      sortedTickets = sortedTickets.sort((a, b) => a.price - b.price).slice(0, Math.ceil(sortedTickets.length / 2));
-      sortedTickets.sort((a, b) => a.segments[0].duration - b.segments[0].duration);
-    }
-
-    dispatch(sortTickets(sortedTickets));
+  const handleChange = () => {
+    dispatch(setActiveTab(value));
   };
 
   return (
+    <li className={classNames('tabs__item', { checked: activeTab === value })}>
+      <label className="tabs__field">
+        <input type="radio" name="Tabs" value={value} onChange={handleChange} checked={activeTab === value} />
+        <span>{children}</span>
+      </label>
+    </li>
+  );
+};
+
+const TabsList = () => {
+  return (
     <ul className="tabs">
-      <li className={`tabs__item ${activeTab === 'cheapest' ? 'checked' : ''}`}>
-        <label className="tabs__field">
-          <input
-            type="radio"
-            name="Tabs"
-            value="cheapest"
-            onChange={handleTabChange}
-            checked={activeTab === 'cheapest'}
-          />
-          <span>Самый дешевый</span>
-        </label>
-      </li>
-      <li className={`tabs__item ${activeTab === 'fastest' ? 'checked' : ''}`}>
-        <label className="tabs__field">
-          <input
-            type="radio"
-            name="Tabs"
-            value="fastest"
-            onChange={handleTabChange}
-            checked={activeTab === 'fastest'}
-          />
-          <span>Самый быстрый</span>
-        </label>
-      </li>
-      <li className={`tabs__item ${activeTab === 'optimal' ? 'checked' : ''}`}>
-        <label className="tabs__field">
-          <input
-            type="radio"
-            name="Tabs"
-            value="optimal"
-            onChange={handleTabChange}
-            checked={activeTab === 'optimal'}
-          />
-          <span>Оптимальный</span>
-        </label>
-      </li>
+      <TabItem value="cheapest">Самый дешевый</TabItem>
+      <TabItem value="fastest">Самый быстрый</TabItem>
+      <TabItem value="optimal">Оптимальный</TabItem>
     </ul>
   );
 };

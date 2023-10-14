@@ -1,10 +1,10 @@
 @import '../../styles/global.scss';
 
-.Container {
+.loadingContainer {
     @include flex-center;
     flex-direction: column;
     height: 100vh;
-  .Logo {
+  .loadingLogo {
       width: 10vh;
       height: 10vh;
       animation: spin 2.5s linear infinite;

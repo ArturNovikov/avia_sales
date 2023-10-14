@@ -1,4 +1,5 @@
 /* eslint-disable indent */
+import { calculateProgress } from '../../utils/progress';
 import {
   FETCH_SEARCH_ID_REQUEST,
   FETCH_SEARCH_ID_SUCCESS,
@@ -20,6 +21,7 @@ const initialState = {
   ticketsToShow: 5,
   totalTickets: 10000,
   loadedTickets: 0,
+  progress: 0,
 };
 
 const ticketsReducer = (state = initialState, action) => {
@@ -55,6 +57,7 @@ const ticketsReducer = (state = initialState, action) => {
         allTickets: [...state.allTickets, ...action.payload.tickets],
         loadedTickets: state.loadedTickets + action.payload.tickets.length,
         stop: action.payload.stop,
+        progress: calculateProgress(state, action.payload),
       };
     case FETCH_TICKETS_ERROR:
       return {

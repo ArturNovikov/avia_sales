@@ -33,7 +33,7 @@ export const fetchTicketsSuccess = (data) => ({
   type: FETCH_TICKETS_SUCCESS,
   payload: {
     tickets: data.tickets,
-    stop: true,
+    stop: data.stop,
   },
 });
 
@@ -64,9 +64,8 @@ export const fetchTickets = () => async (dispatch) => {
     let stop = false;
     while (!stop) {
       const batch = await apiService.fetchBatchTickets(searchId);
-      stop = batch.stop;
-
       dispatch(fetchTicketsSuccess(batch));
+      stop = batch.stop;
     }
   } catch (error) {
     console.error('Error occurred:', error.message);

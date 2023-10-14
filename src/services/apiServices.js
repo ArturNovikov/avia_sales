@@ -16,8 +16,6 @@ class ApiService {
       const response = await fetch(`${BASE_URL}/tickets?searchId=${searchId}`);
 
       if (response.status >= 500 && response.status < 600) {
-        console.warn('Server error, retrying in 1 second...');
-        await new Promise((resolve) => setTimeout(resolve, 1000));
         return this.fetchBatchTickets(searchId);
       }
 

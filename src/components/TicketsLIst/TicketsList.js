@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 
 import TicketItem from '../TicketItem';
+import { filterTickets, sortTickets } from '../../utils/filter&sort';
 import './TicketsList.scss';
 
 const TicketsList = () => {
@@ -13,30 +14,14 @@ const TicketsList = () => {
   const { allTickets, ticketsToShow } = useSelector((state) => state.tickets);
   const filters = useSelector((state) => state.filters);
 
-  const filteredTickets = allTickets.filter((ticket) => {
-    const stopsCount = ticket.segments[0].stops.length;
-    if (filters.all) return true;
-    if (filters.noStops && stopsCount === 0) return true;
-    if (filters.oneStop && stopsCount === 1) return true;
-    if (filters.twoStops && stopsCount === 2) return true;
-    if (filters.threeStops && stopsCount === 3) return true;
-    return false;
-  });
+  const filteredTickets = useMemo(() => {
+    return filterTickets(allTickets, filters);
+  }, [allTickets, filters]);
 
-  const sortTickets = (tickets, tab) => {
-    let sortedTickets = [...tickets];
-    if (tab === 'cheapest') {
-      sortedTickets.sort((a, b) => a.price - b.price);
-    } else if (tab === 'fastest') {
-      sortedTickets.sort((a, b) => a.segments[0].duration - b.segments[0].duration);
-    } else if (tab === 'optimal') {
-      sortedTickets = sortedTickets.sort((a, b) => a.price - b.price).slice(0, Math.ceil(sortedTickets.length / 2));
-      sortedTickets.sort((a, b) => a.segments[0].duration - b.segments[0].duration);
-    }
-    return sortedTickets;
-  };
+  const filteredAndSortedTickets = useMemo(() => {
+    return sortTickets(filteredTickets, activeTab);
+  }, [filteredTickets, activeTab]);
 
-  const filteredAndSortedTickets = sortTickets(filteredTickets, activeTab);
   const currentTickets = filteredAndSortedTickets.slice(0, ticketsToShow);
 
   if (currentTickets.length === 0) {

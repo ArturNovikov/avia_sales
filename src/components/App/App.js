@@ -15,9 +15,8 @@ import './App.scss';
 const App = () => {
   const dispatch = useDispatch();
   const loading = useSelector((state) => state.tickets.loading);
+  const progress = useSelector((state) => state.tickets.progress);
   const totalFetchedTickets = useSelector((state) => state.tickets.allTickets.length);
-  const expectedTotalTickets = useSelector((state) => state.tickets.totalTickets);
-  const percentLoaded = (totalFetchedTickets / expectedTotalTickets) * 100;
 
   useEffect(() => {
     dispatch(fetchTickets());
@@ -33,7 +32,7 @@ const App = () => {
         <div className="main__tickets">
           <TabsList />
           <Space direction="vertical">
-            <Progress percent={percentLoaded} size={[500, 20]} showInfo={false} className="shiny-progress" />
+            <Progress percent={progress} size={[500, 20]} showInfo={false} className="shiny-progress" />
           </Space>
           {loading && totalFetchedTickets === 0 ? <Loading /> : <TicketsList />}
           <Pagination />

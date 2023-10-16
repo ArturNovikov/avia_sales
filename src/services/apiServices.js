@@ -1,4 +1,4 @@
-const BASE_URL = 'https://aviasales-test-api.kata.acade3my';
+const BASE_URL = 'https://aviasales-test-api.kata.academy';
 
 class ApiService {
   async initSearch() {

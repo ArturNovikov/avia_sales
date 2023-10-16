@@ -1,3 +1,3 @@
 Production:
 
-https://avia-sales-i6bu1z5dv-arturnovikov.vercel.app
+ https://avia-sales-9dvn8f3dz-arturnovikov.vercel.app

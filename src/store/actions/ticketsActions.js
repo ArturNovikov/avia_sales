@@ -1,4 +1,15 @@
+import { notification } from 'antd';
+
 import ApiService from '../../services/apiServices';
+
+const showErrorNotification = (errorMessage) => {
+  notification.error({
+    message: 'Ошибка',
+    description: errorMessage,
+    duration: 5,
+    placement: 'bottomRight',
+  });
+};
 
 import {
   FETCH_SEARCH_ID_REQUEST,
@@ -64,11 +75,14 @@ export const fetchTickets = () => async (dispatch) => {
     let stop = false;
     while (!stop) {
       const batch = await apiService.fetchBatchTickets(searchId);
+      if (!batch.tickets || !Array.isArray(batch.tickets)) {
+        throw new Error('Invalid data received from the server.');
+      }
       dispatch(fetchTicketsSuccess(batch));
       stop = batch.stop;
     }
   } catch (error) {
-    console.error('Error occurred:', error.message);
+    showErrorNotification(error.message || 'Error occurred! Please, try again!');
     dispatch(fetchSearchIdError(error.message));
     dispatch(fetchTicketsError(error.message));
   }

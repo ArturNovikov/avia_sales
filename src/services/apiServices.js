@@ -1,4 +1,4 @@
-const BASE_URL = 'https://aviasales-test-api.kata.academy';
+const BASE_URL = 'https://aviasales-test-api.kata.acade3my';
 
 class ApiService {
   async initSearch() {
@@ -14,7 +14,7 @@ class ApiService {
       const data = await response.json();
       return data.searchId;
     } catch (error) {
-      console.error('Error initializing search: ', error);
+      throw new Error(`Error initializing search: ${error.message}`);
     }
   }
 
@@ -33,8 +33,7 @@ class ApiService {
       const data = await response.json();
       return { tickets: data.tickets, stop: data.stop };
     } catch (error) {
-      console.error('Error fetching a batch of tickets: ', error);
-      throw error;
+      throw new Error(`Error fetching a batch of tickets: ${error.message}`);
     }
   }
 }

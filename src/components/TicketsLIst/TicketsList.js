@@ -2,8 +2,9 @@ import React, { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 
 import TicketItem from '../TicketItem';
-import { filterTickets, sortTickets } from '../../utils/filter&sort';
-import './TicketsList.scss';
+import { filterTickets, sortTickets } from '../../utils/filterAndSort';
+
+import styles from './TicketsList.module.scss';
 
 const TicketsList = () => {
   const generateTicketId = (ticket) => {
@@ -25,11 +26,11 @@ const TicketsList = () => {
   const currentTickets = filteredAndSortedTickets.slice(0, ticketsToShow);
 
   if (currentTickets.length === 0) {
-    return <p className="no-tickets-message">Рейсов, подходящих под заданные фильтры, не найдено.</p>;
+    return <p className={styles['no-tickets-message']}>Рейсов, подходящих под заданные фильтры, не найдено.</p>;
   }
 
   return (
-    <ul className="tickets__list">
+    <ul className={styles.tickets__list}>
       {currentTickets.map((ticket) => (
         <li key={generateTicketId(ticket)}>
           <TicketItem ticket={ticket} />

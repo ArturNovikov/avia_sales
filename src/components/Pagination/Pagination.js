@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 
 import { loadMoreTickets } from '../../store/actions/ticketsActions';
 
-import './Pagination.scss';
+import styles from './Pagination.module.scss';
 
 const Pagination = () => {
   const dispatch = useDispatch();
@@ -15,7 +15,7 @@ const Pagination = () => {
   };
 
   return (
-    <button className="pagination" onClick={handleLoadMore}>
+    <button className={styles.pagination} onClick={handleLoadMore}>
       <span>Показать еще 5 билетов!</span>
     </button>
   );

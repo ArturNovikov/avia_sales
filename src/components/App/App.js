@@ -10,7 +10,7 @@ import TabsList from '../TabsList';
 import Pagination from '../Pagination';
 import Logo from '../../assets/LogoLogoPlane.svg';
 
-import './App.scss';
+import styles from './App.module.scss';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -23,16 +23,16 @@ const App = () => {
   }, [dispatch]);
 
   return (
-    <div className="wrapper__container">
-      <header className="header">
-        <img src={Logo} className="header__logo" alt="Logo" />
+    <div className={styles.wrapper__container}>
+      <header className={styles.header}>
+        <img src={Logo} className={styles.header__logo} alt="Logo" />
       </header>
-      <main className="main">
+      <main className={styles.main}>
         <FilterList />
-        <div className="main__tickets">
+        <div className={styles.main__tickets}>
           <TabsList />
           <Space direction="vertical">
-            <Progress percent={progress} size={[500, 20]} showInfo={false} className="shiny-progress" />
+            <Progress percent={progress} size={[500, 20]} showInfo={false} className={styles.shiny - progress} />
           </Space>
           {loading && totalFetchedTickets === 0 ? <Loading /> : <TicketsList />}
           <Pagination />

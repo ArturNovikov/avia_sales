@@ -4,6 +4,13 @@ class ApiService {
   async initSearch() {
     try {
       const response = await fetch(`${BASE_URL}/search`);
+      if (response.status >= 500 && response.status < 600) {
+        return this.initSearch();
+      }
+
+      if (!response.ok) {
+        throw new Error(`Server responded with a status: ${response.status}`);
+      }
       const data = await response.json();
       return data.searchId;
     } catch (error) {
@@ -27,22 +34,6 @@ class ApiService {
       return { tickets: data.tickets, stop: data.stop };
     } catch (error) {
       console.error('Error fetching a batch of tickets: ', error);
-      throw error;
-    }
-  }
-
-  async fetchAllTickets(searchId, collectedTickets = []) {
-    try {
-      const { tickets, stop } = await this.fetchBatchTickets(searchId);
-      const allTickets = [...collectedTickets, ...tickets];
-
-      if (stop) {
-        return allTickets;
-      } else {
-        return this.fetchAllTickets(searchId, allTickets);
-      }
-    } catch (error) {
-      console.error('Error for fetching all tickets: ', error);
       throw error;
     }
   }

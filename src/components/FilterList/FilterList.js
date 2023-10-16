@@ -1,7 +1,9 @@
 import React from 'react';
 
 import FilterItem from '../FilterItem';
-import './FilterList.scss';
+import filterItemStyles from '../FilterItem/FilterItem.module.scss';
+
+import styles from './FilterList.module.scss';
 
 const FILTERS = [
   { name: 'all', label: 'Все' },
@@ -13,18 +15,18 @@ const FILTERS = [
 
 const FilterList = () => {
   const handleItemClick = (e) => {
-    const inputElement = e.currentTarget.querySelector('.filter__input');
+    const inputElement = e.currentTarget.querySelector(`.${filterItemStyles.filter__input}`);
     if (inputElement && e.target !== inputElement && e.target.tagName !== 'LABEL' && e.target.tagName !== 'SPAN') {
       inputElement.click();
     }
   };
 
   return (
-    <aside className="filter">
-      <span className="filter__title">Количество пересадок</span>
-      <ul className="filter__list">
+    <aside className={styles.filter}>
+      <span className={styles.filter__title}>Количество пересадок</span>
+      <ul className={styles.filter__list}>
         {FILTERS.map((filter) => (
-          <li key={filter.name} className="filter__item" onClick={handleItemClick}>
+          <li key={filter.name} className={styles.filter__item} onClick={handleItemClick}>
             <FilterItem {...filter} />
           </li>
         ))}

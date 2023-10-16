@@ -2,6 +2,7 @@ import React from 'react';
 
 import FilterItem from '../FilterItem';
 import filterItemStyles from '../FilterItem/FilterItem.module.scss';
+import responsiveStyles from '../../responsive.module.scss';
 
 import styles from './FilterList.module.scss';
 
@@ -22,7 +23,7 @@ const FilterList = () => {
   };
 
   return (
-    <aside className={styles.filter}>
+    <aside className={`${styles.filter} ${responsiveStyles.filter}`}>
       <span className={styles.filter__title}>Количество пересадок</span>
       <ul className={styles.filter__list}>
         {FILTERS.map((filter) => (

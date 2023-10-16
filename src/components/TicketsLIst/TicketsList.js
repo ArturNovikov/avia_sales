@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 
 import TicketItem from '../TicketItem';
 import { filterTickets, sortTickets } from '../../utils/filterAndSort';
+import responsiveStyles from '../../responsive.module.scss';
 
 import styles from './TicketsList.module.scss';
 
@@ -30,7 +31,7 @@ const TicketsList = () => {
   }
 
   return (
-    <ul className={styles.tickets__list}>
+    <ul className={`${styles.tickets__list} ${responsiveStyles.tickets__list}`}>
       {currentTickets.map((ticket) => (
         <li key={generateTicketId(ticket)}>
           <TicketItem ticket={ticket} />

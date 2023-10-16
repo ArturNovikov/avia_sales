@@ -1,4 +1,9 @@
-@import './media-queries';
+@import './responsive.module.scss';
+
+#root {
+  display: flex;
+  justify-content: center;
+}
 
 html {
     box-sizing: border-box;

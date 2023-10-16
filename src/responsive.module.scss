@@ -1,0 +1,38 @@
+@media (max-width: 740px) {
+  .wrapper__container {
+      width: 510px;
+      margin-left: auto;
+      .header {
+          width: 400px;
+          height: 100px;
+      }
+
+      .main {
+          display: flex;
+          flex-direction: column;
+
+          .filter,
+          .main__tickets,
+          .tabs,
+          .tickets__list,
+          .pagination {
+              margin-bottom: 10px;
+              width: 400px;
+          }
+
+          .tickets__list > li > div {
+              width: 400px;
+          }
+      }
+  }
+
+  .ant-space * {
+    width: 400px !important;
+  }
+}
+
+@media (max-width: 421px) {
+  .wrapper__container {
+      padding-left: 50%;
+  }
+}

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import classNames from 'classnames';
 
 import { setActiveTab } from '../../store/actions/tabsActions';
+import responsiveStyles from '../../responsive.module.scss';
 
 import styles from './TabsList.module.scss';
 
@@ -26,7 +27,7 @@ const TabItem = ({ value, children }) => {
 
 const TabsList = () => {
   return (
-    <ul className={styles.tabs}>
+    <ul className={`${styles.tabs} ${responsiveStyles.tabs}`}>
       <TabItem value="cheapest">Самый дешевый</TabItem>
       <TabItem value="fastest">Самый быстрый</TabItem>
       <TabItem value="optimal">Оптимальный</TabItem>
